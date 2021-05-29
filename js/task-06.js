@@ -3,14 +3,20 @@
 // Если введено подходящее количество, то border инпута становится зеленым, если неправильное - красным.
 // Для добавления стилей, используй CSS - классы valid и invalid.
 
-#validation-input {
-  border: 3px solid #bdbdbd;
-}
 
-#validation-input.valid {
-  border-color: #4caf50;
-}
+const inputEl = document.querySelector('#validation-input');
+inputEl.addEventListener('blur', getChangeInputColor);
 
-#validation-input.invalid {
-  border-color: #f44336;
+function getChangeInputColor() {
+  const dataNumberOfLetters = Number(inputEl.dataset.length);
+  // console.log(dataNumberOfLetters);
+  const changingNumbersOfLetters = inputEl.value.split('').length;
+// console.log(changingNumbersOfLetters);
+  if (changingNumbersOfLetters === dataNumberOfLetters) {
+   inputEl.classList.add('valid');
+        inputEl.classList.remove('invalid');
+  } else {
+    inputEl.classList.add('invalid');
+    inputEl.classList.remove('valid');
 }
+};
